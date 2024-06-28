@@ -4,7 +4,7 @@ services:
     image: front-end-image:latest
     ports:
       - "3000:3000"
-  server:
-    image: back-end-image:latest
-    ports:
-      - "8080:8080"
+  # server:
+  #   image: back-end-image:latest
+  #   ports:
+  #     - "8080:8080"
