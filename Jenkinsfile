@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Build Fron-end') {
+        stage('Build Front-end') {
             steps {
                 dir('front-end') {
                     script {
@@ -21,8 +21,14 @@ pipeline {
             steps {
                 dir('back-end') {
                     script {
-                        // Build Spring Boot application using Maven
-                        sh 'mvn clean package -DskipTests'
+                        // Build custom Maven image with Java 20
+                        sh '''
+                        docker build -t custom-maven-java20 -f Dockerfile-maven-java20 .
+                        '''
+                        // Use the custom Maven Docker image to build Spring Boot application
+                        docker.image('custom-maven-java20').inside {
+                            sh 'mvn clean package -DskipTests'
+                        }
                         // Build Docker image for server
                         sh 'docker build -t back-end-image:latest -f Dockerfile .'
                     }
