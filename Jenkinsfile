@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Build Client') {
+        stage('Build Fron-end') {
             steps {
                 dir('front-end') {
                     script {
@@ -17,7 +17,7 @@ pipeline {
             }
         }
         
-        stage('Build Server') {
+        stage('Build Back-end') {
             steps {
                 dir('back-end') {
                     script {

@@ -13,4 +13,4 @@ EXPOSE 8080
 
 COPY target/*.jar ticket-booking-server.jar
 
-ENTRYPOINT ["java", "-jar", "/attendance-system-server.jar"]
+ENTRYPOINT ["java", "-jar", "/ticket-booking-server.jar"]
