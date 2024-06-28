@@ -60,6 +60,7 @@ pipeline {
                     sh 'docker-compose down --remove-orphans'
                     // Deploy using docker-compose
                     sh 'docker-compose up --build -d'
+                    sh 'docker ps'
                 }
             }
         }
