@@ -1,3 +1,51 @@
+# version: '3'
+# services:
+#   client:
+#     image: front-end-image:latest
+#     build:
+#       context: ./front-end
+#       dockerfile: Dockerfile
+#     ports:
+#       - "3000:3000"
+#     networks:
+#       - apps-net
+
+#   server:
+#     image: back-end-image:latest
+#     build:
+#       context: ./back-end/springboot
+#       dockerfile: Dockerfile
+#     ports:
+#       - "8080:8080"
+#     networks:
+#       - apps-net
+#     depends_on:
+#       mysqldb:
+#         condition: service_healthy
+
+#   mysqldb:
+#     image: mysql:latest
+#     container_name: booking-mysqldb
+#     networks:
+#       - apps-net
+#     ports:
+#       - "3306:3306"
+#     environment:
+#       MYSQL_DATABASE: ticket_booking_website
+#       MYSQL_USER: thana
+#       MYSQL_PASSWORD: Thana@1234
+#       MYSQL_ROOT_PASSWORD: root_password
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 5
+
+# networks:
+#   apps-net:
+#     driver: bridge
+
+
 version: '3'
 services:
   client:
@@ -5,6 +53,6 @@ services:
     ports:
       - "3000:3000"
   # server:
-  #   image: back-end-image:latest
+  #   image: server-image:latest
   #   ports:
   #     - "8080:8080"
