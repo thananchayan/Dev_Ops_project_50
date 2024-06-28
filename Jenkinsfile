@@ -35,19 +35,27 @@ pipeline {
         //         }
         //     }
         // }
-         stage('Deploy') {
+                stage('Install Docker Compose') {
             steps {
                 script {
-                    // Check if docker-compose is installed, if not install it
+                    // Check and install Docker Compose if not present
                     sh '''
-                    if ! command -v docker-compose &> /dev/null
-                    then
+                    if ! [ -x "$(command -v docker-compose)" ]; then
                         echo "docker-compose not found, installing..."
                         curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /tmp/docker-compose
                         chmod +x /tmp/docker-compose
                         sudo mv /tmp/docker-compose /usr/local/bin/docker-compose
+                    else
+                        echo "docker-compose is already installed"
                     fi
                     '''
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
                     // Stop and remove previous containers
                     sh 'docker-compose down --remove-orphans'
                     // Deploy using docker-compose
