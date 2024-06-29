@@ -11,7 +11,8 @@ pipeline {
                 dir('front-end') {
                     script {
                         // Build Docker image for client
-                        sh 'docker build -t front-end-image:latest -f Dockerfile .'
+                        sh 'docker build -t
+                         front-end-image:latest -f Dockerfile .'
                     }
                 }
             }
