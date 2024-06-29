@@ -20,8 +20,9 @@
 #     networks:
 #       - apps-net
 #     depends_on:
-#       mysqldb:
-#         condition: service_healthy
+#       - mysqldb
+#     volumes:
+#       - ./back-end/springboot/src/main/resources/application.properties:/app/application.properties
 
 #   mysqldb:
 #     image: mysql:latest
@@ -35,11 +36,6 @@
 #       MYSQL_USER: thana
 #       MYSQL_PASSWORD: Thana@1234
 #       MYSQL_ROOT_PASSWORD: root_password
-#     healthcheck:
-#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-#       interval: 30s
-#       timeout: 10s
-#       retries: 5
 
 # networks:
 #   apps-net:
