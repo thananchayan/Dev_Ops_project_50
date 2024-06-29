@@ -39,7 +39,7 @@ export default function Home() {
                 fontFamily: "Times New Roman",
               }}
             >
-              TicketHub
+              Ticket
             </span>
           </h1>
         </div>
